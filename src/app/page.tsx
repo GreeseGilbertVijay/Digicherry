@@ -1,45 +1,37 @@
 import Image from "next/image";
 import logo from "../../public/digicherrylogo.png";
 import type { ReactNode } from "react";
-
-const services = [
-  ["01", "Content that connects", "Distinctive ideas, thoughtful art direction, and thumb-stopping video built around what makes your brand worth following.", "Creative direction · Video · Design"],
-  ["02", "A strategy with a pulse", "Audience research and a clear point of view turn your social channels into a consistent, recognizable presence.", "Research · Positioning · Planning"],
-  ["03", "Community, made closer", "Real conversations build real loyalty. We show up for your audience with the care and character they deserve.", "Engagement · Listening · Care"],
-  ["04", "Paid social, made smarter", "We find the right people, test what resonates, and optimize so your media budget does more of what works.", "Paid media · Creative testing · Analytics"],
-  ["05", "The right kind of influence", "Thoughtful creator partnerships that feel natural to their audience and unmistakably right for your brand.", "Creator sourcing · Partnerships · Campaigns"],
-  ["06", "Your socials, in good hands", "From daily publishing to monthly reporting, we keep every detail moving and every channel feeling like you.", "Publishing · Management · Reporting"],
-];
-
-const cases = [
-  { brand: "Sunday Somewhere", title: "A sunnier point of view", type: "Lifestyle", image: "photo-1529139574466-a303027c1d8b", stats: ["3.2M", "6.8x", "+184%"], tone: "peach" },
-  { brand: "Forma Skin", title: "Skincare, with a following", type: "Beauty", image: "photo-1534528741775-53994a69daeb", stats: ["2.1M", "4.4x", "+126%"], tone: "pink" },
-  { brand: "Offscript Studio", title: "Small label. Big energy.", type: "Fashion", image: "photo-1506794778202-cad84cf45f1d", stats: ["980K", "5.2x", "+212%"], tone: "mint" },
-];
-
-const faqs = [
-  ["Which platforms do you work on?", "Instagram, TikTok, LinkedIn, Pinterest, YouTube, and Facebook. We recommend the channels that make sense for your audience, not every channel just because it exists."],
-  ["How soon can we get started?", "Most new partnerships launch within two to three weeks. That gives us time to learn your brand, meet your team, and build a thoughtful first-month plan."],
-  ["Can you work with our in-house team?", "Absolutely. We can take the whole channel off your plate or add creative and strategic firepower wherever your team needs it."],
-  ["How do you measure success?", "We agree on goals together, then report on the metrics that connect social activity to business outcomes. You will always know what is working and what we are changing."],
-  ["Do you offer one-off projects?", "Yes. Strategy sprints, campaign creative, and creator programs can all be scoped as focused projects. Tell us what you have in mind and we will find the right shape."],
-];
-
-const people = [
-  ["Maya Chen", "Founder & Strategy", "photo-1531123897727-8f129e1688ce"],
-  ["Leo Bennett", "Creative Director", "photo-1500648767791-00dcc994a43e"],
-  ["Samira Patel", "Community Lead", "photo-1534528741775-53994a69daeb"],
-  ["Eli Brooks", "Paid Media Lead", "photo-1506794778202-cad84cf45f1d"],
-];
+import { FaBehance, FaFacebookF, FaInstagram, FaLinkedinIn, FaYoutube } from "react-icons/fa";
+import { PiCalendarCheckFill, PiEnvelopeSimpleFill, PiMapPinFill, PiPhoneFill, PiSmileyFill, PiTrendUpFill } from "react-icons/pi";
+import CountUp from "./count-up";
+import Reveal from "./reveal";
 
 const logos = Array.from({ length: 29 }, (_, index) => index + 1);
 
 const reels = ["Db-At7SK31S", "DbGA6GaDjpl", "DaraBkiDMOM", "DapyV4Jmr9I", "DafR8tSDl35", "DaZP4muDtlK", "DaX0pjmlVQO"];
 
+const socials = [
+  { href: "https://www.facebook.com/profile.php?id=100083845185459&mibextid=LQQJ4d", label: "Facebook", icon: FaFacebookF },
+  { href: "https://instagram.com/digicherry.in?igshid=YmMyMTA2M2Y=", label: "Instagram", icon: FaInstagram },
+  { href: "https://www.linkedin.com/company/96105773/admin/page-posts/published/", label: "LinkedIn", icon: FaLinkedinIn },
+  { href: "https://www.youtube.com/@DigicherryDC", label: "YouTube", icon: FaYoutube },
+  { href: "https://www.behance.net/gallery/231187221/Portfolio?tracking_source=project_owner_other_projects", label: "Behance", icon: FaBehance },
+];
+
+const unsplash =(id: string) => `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=800&q=80`;
+
+// Photos and stats alternate in a checkerboard: photo, stat, photo / stat, photo, stat.
+const introTiles = [
+  { image: unsplash("1522202176988-66273c2fd55f"), alt: "Team planning a campaign together" },
+  { icon: PiCalendarCheckFill, value: 5, suffix: "+", title: "Years of Experience", text: "Years of hands-on work in digital marketing and website development." },
+  { image: unsplash("1460925895917-afdab827c52f"), alt: "Laptop showing marketing analytics" },
+  { icon: PiSmileyFill, value: 100, suffix: "+", title: "Happy Clients", text: "Businesses that trust us to grow their reach and online presence." },
+  { image: unsplash("1557804506-669a67965ba0"), alt: "Strategy meeting around a table" },
+  { icon: PiTrendUpFill, value: 10000, suffix: "+", title: "Leads Generated", text: "Qualified leads delivered through campaigns built to convert." },
+] as const;
+
 const sectionWrap = "mx-auto w-[calc(100%-10vw)] sm:w-[calc(100%-8vw)] md:w-[min(1160px,calc(100%-11vw))]";
-const tintedSection = "bg-[#f7efe9] pt-16 pb-[68px] sm:pt-[86px] sm:pb-[95px] lg:py-16";
 const sectionHeading = "m-0 font-heading text-[43px] font-extrabold leading-[1.03] tracking-[-1.4px] sm:text-[clamp(40px,5vw,63px)] sm:tracking-[-2px] lg:text-[clamp(44px,3.9vw,56px)]";
-const headingAccent = "font-serif font-normal tracking-normal text-coral";
 const bodyText = "leading-[1.8] text-muted";
 
 const button = "group inline-flex min-h-[43px] items-center justify-center rounded-full px-[15px] text-[11px] font-bold transition duration-200 hover:-translate-y-0.5 sm:min-h-[46px] sm:px-[21px] sm:text-[13px]";
@@ -47,16 +39,7 @@ const hoverOrange = "hover:bg-coral hover:text-white hover:shadow-[0_10px_26px_#
 const buttonCoral = `bg-coral text-white shadow-[0_7px_17px_#dd6d5030] ${hoverOrange}`;
 const buttonLight = `bg-white text-ink ${hoverOrange}`;
 const buttonDark = `bg-ink text-white shadow-[0_8px_20px_#17151326] ${hoverOrange}`;
-const buttonOutline = `border border-[#d5c8bd] text-ink hover:border-coral ${hoverOrange}`;
-// On the coral contact section an orange hover would disappear into the background, so it goes dark instead.
-const buttonOnCoral = "bg-white text-ink hover:bg-ink hover:text-white hover:shadow-[0_10px_26px_#17151340]";
 
-const textLink = "group mt-3 inline-flex items-center gap-3 text-[11px] font-bold sm:text-xs";
-const textLinkArrow = "text-coral-dark transition-transform duration-200 group-hover:translate-x-1";
-
-function Photo({ image, alt, className = "" }: { image: string; alt: string; className?: string }) {
-  return <div className={`bg-cover ${className}`} role="img" aria-label={alt} style={{ backgroundImage: `url(https://images.unsplash.com/${image}?auto=format&fit=crop&w=1000&q=85)` }} />;
-}
 
 function RollText({ children }: { children: string }) {
   return (
@@ -67,34 +50,17 @@ function RollText({ children }: { children: string }) {
   );
 }
 
-function Wordmark({ className = "" }: { className?: string }) {
-  return (
-    <a className={`inline-flex items-center gap-[7px] whitespace-nowrap text-base font-extrabold leading-none sm:gap-2.5 sm:text-[19px] ${className}`} href="#top">
-      <span className="grid size-[30px] place-items-center rounded-[11px] bg-coral text-[17px] text-white shadow-[0_5px_13px_#df795433] sm:size-[34px] sm:text-[19px]" aria-hidden="true">&#10022;</span>
-      <span>digi<span className="text-coral-dark">cherry</span></span>
-    </a>
-  );
+// Each word slides up out of its own clipping box, staggered after `delay` ms.
+function RiseWords({ text, delay = 0 }: { text: string; delay?: number }) {
+  return text.split(" ").map((word, index) => (
+    <span key={index}>
+      {index > 0 && " "}
+      <span className="-mb-[.12em] inline-block overflow-hidden pb-[.12em] align-top">
+        <span className="inline-block animate-rise motion-reduce:animate-none" style={{ animationDelay: `${delay + index * 90}ms` }}>{word}</span>
+      </span>
+    </span>
+  ));
 }
-
-function Kicker({ label, note }: { label: string; note: string }) {
-  return (
-    <div className="flex justify-between gap-5 border-b border-line pb-[15px] text-[8px] font-bold uppercase tracking-[.7px] text-[#897d75] sm:text-[10px]">
-      <span>{label}</span>
-      <span className="text-right font-medium normal-case tracking-normal sm:text-left">{note}</span>
-    </div>
-  );
-}
-
-function HeadingRow({ children, text }: { children: ReactNode; text: string }) {
-  return (
-    <div className="flex flex-col items-start gap-[13px] pt-8 pb-[25px] sm:flex-row sm:items-end sm:justify-between sm:gap-10 sm:pt-[43px] sm:pb-[35px] lg:pt-8 lg:pb-7">
-      <h2 className={sectionHeading}>{children}</h2>
-      <p className={`m-0 mb-[5px] max-w-[370px] text-xs sm:max-w-[350px] sm:text-sm ${bodyText}`}>{text}</p>
-    </div>
-  );
-}
-
-const storyPositions = ["bg-[position:50%_36%]", "bg-[position:50%_31%]", "bg-[position:50%_40%]"];
 
 export default function Home() {
   return (
@@ -108,13 +74,23 @@ export default function Home() {
       </div></header>
 
       <section className="relative overflow-hidden bg-[#fbf1eb] pt-[55px] sm:min-h-[640px] sm:pt-16 lg:min-h-0 lg:pt-12" aria-labelledby="hero-title">
-        <div className="pointer-events-none absolute -top-[250px] -right-[142px] size-[440px] rounded-full border border-[#efc9ba80] shadow-[0_0_0_44px_#efc9ba16,0_0_0_89px_#efc9ba10]" aria-hidden="true" />
+        <div className="pointer-events-none absolute -top-[250px] -right-[142px] size-[440px] animate-breathe rounded-full border border-[#efc9ba80] shadow-[0_0_0_44px_#efc9ba16,0_0_0_89px_#efc9ba10] motion-reduce:animate-none" aria-hidden="true" />
+        <div className="pointer-events-none absolute top-[38%] -left-[90px] size-[180px] animate-float rounded-full bg-coral/10 blur-2xl motion-reduce:animate-none" aria-hidden="true" />
         <div className={`${sectionWrap} relative`}>
         <div className="relative z-[1] mx-auto max-w-[900px] text-center lg:max-w-[1000px]">
-          <div className="inline-flex items-center gap-[9px] rounded-[40px] bg-white py-[5px] pr-3 pl-[5px] text-[11px] font-semibold text-[#5e5550]"><span className="rounded-[40px] bg-coral px-[9px] py-[5px] text-[10px] text-white">#001</span>Top Digital Marketing & Website Development Company in Pondicherry</div>
-          <h1 className="mb-0 font-heading text-[clamp(43px,12vw,61px)] font-extrabold leading-[.99] tracking-[-1.8px] sm:mt-[22px] sm:text-[clamp(48px,6vw,78px)] sm:tracking-[-2.6px] lg:text-[clamp(56px,5vw,72px)]" id="hero-title">More Reach! More Leads!<br className="hidden sm:inline" /><em className="text-coral not-italic">Smarter Digital Solutions</em></h1>
-          <p className="mx-auto mt-[18px] max-w-[370px] text-sm leading-[1.65] text-[#746b65] sm:mt-[32px] sm:max-w-[490px] sm:text-base lg:max-w-[800px]">We specialize in digital marketing and website development, helping businesses boost website traffic, enhance online visibility, and achieve sustainable growth through effective strategies and innovative solutions tailored to your needs.</p>
-          <div className="mt-[21px] flex justify-center gap-2 sm:mt-[27px] sm:gap-3 lg:mt-6"><a data-cursor="button" className={`${button} ${buttonLight}`} href="#work"><RollText>See what we do</RollText></a><a data-cursor="button" className={`${button} ${buttonDark}`} href="#services"><RollText>Explore services</RollText></a></div>
+          <div className="inline-flex animate-fade-down items-center gap-[9px] rounded-[40px] bg-white py-[5px] pr-3 pl-[5px] text-[11px] font-semibold text-[#5e5550] motion-reduce:animate-none"><span className="animate-ping-soft rounded-[40px] bg-coral px-[9px] py-1 text-[10px] text-white motion-reduce:animate-none">#001</span>Top Digital Marketing & Website Development Company in Pondicherry</div>
+          <h1 className="mb-4 mt-8 font-heading text-[clamp(43px,12vw,61px)] font-extrabold leading-[.99] tracking-[-1.8px] sm:mt-12 sm:text-[clamp(48px,6vw,78px)] sm:tracking-[-2.6px] lg:text-[clamp(56px,5vw,72px)]" id="hero-title">
+            <RiseWords text="More Reach! More Leads!" delay={150} />{" "}<br className="hidden sm:inline" />
+            <em className="relative inline-block text-coral not-italic">
+              <RiseWords text="Smarter Digital Solutions" delay={450} />
+              {/* Hand-drawn underline that sketches itself in once the words have landed. */}
+              <svg className="pointer-events-none absolute -bottom-[.3em] left-[4%] hidden h-[.28em] w-[92%] sm:block" viewBox="0 0 300 20" preserveAspectRatio="none" aria-hidden="true">
+                <path className="animate-draw [animation-delay:1.1s] motion-reduce:animate-none" d="M3 14 C 70 4, 160 3, 297 10" fill="none" stroke="currentColor" strokeWidth="5" strokeLinecap="round" pathLength="1" strokeDasharray="1" opacity=".45" />
+              </svg>
+            </em>
+          </h1>
+          <p className="mx-auto mt-[18px] max-w-[370px] animate-fade-up text-sm leading-[1.65] text-[#746b65] [animation-delay:800ms] motion-reduce:animate-none sm:mt-[32px] sm:max-w-[490px] sm:text-base lg:max-w-[800px]">We specialize in digital marketing and website development, helping businesses boost website traffic, enhance online visibility, and achieve sustainable growth through effective strategies and innovative solutions tailored to your needs.</p>
+          <div className="mt-[21px] flex animate-fade-up justify-center gap-2 [animation-delay:1s] motion-reduce:animate-none sm:mt-[27px] sm:gap-3 lg:mt-6"><a data-cursor="button" className={`${button} ${buttonLight}`} href="#work"><RollText>See what we do</RollText></a><a data-cursor="button" className={`${button} ${buttonDark}`} href="#services"><RollText>Explore services</RollText></a></div>
         </div>
         </div>
       </section>
@@ -134,9 +110,44 @@ export default function Home() {
       {/* Same doubled-track trick as the reels, run in reverse so the logos drift right; multiply blends each logo's white backdrop into the strip. */}
       <section className="py-6 sm:py-8" aria-label="Clients we work with">
         <div className="overflow-hidden [mask-image:linear-gradient(90deg,transparent,#000_12%,#000_88%,transparent)] motion-reduce:overflow-x-auto motion-reduce:[mask-image:none]">
-          <div className="flex w-max animate-logos hover:[animation-play-state:paused] motion-reduce:animate-none">
+          <div className="flex w-max animate-logos [will-change:translate] hover:[animation-play-state:paused] motion-reduce:animate-none">
+            {/* Every logo sits in a fixed-size box and loads eagerly, so the track's width never changes mid-scroll
+                and the -50% loop point always lines up exactly with the start of the second copy. */}
             {[...logos, ...logos].map((n, index) => (
-              <Image className="mr-10 h-12 w-auto shrink-0 object-contain mix-blend-multiply sm:mr-16 sm:h-14" src={`/logos/${n}.webp`} alt={index >= logos.length ? "" : `Client logo ${n}`} width={160} height={56} key={`${n}-${index}`} />
+              <Image className="mr-10 h-12 w-[120px] shrink-0 object-contain mix-blend-multiply sm:mr-16 sm:h-14 sm:w-[150px]" src={`/logos/${n}.webp`} alt={index >= logos.length ? "" : `Client logo ${n}`} width={150} height={56} loading="eager" key={`${n}-${index}`} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-[#fbf1eb] py-16 sm:py-24" id="about" aria-labelledby="intro-title">
+        <div className={sectionWrap}>
+          <div className="text-center">
+            <Reveal><span className="inline-flex items-center gap-2 text-[12px] font-bold uppercase tracking-[.4px]"><span className="size-2 animate-ping-soft rounded-full bg-coral" aria-hidden="true" />About Us</span></Reveal>
+            <Reveal delay={120}><h2 className="mx-auto mt-4 max-w-[640px] font-heading text-[28px] font-bold leading-[1.3] tracking-[-1px] sm:text-[38px]" id="intro-title">
+             Who is Digicherry{" "}
+              <span className="relative inline-block h-[.8em] w-[1.9em] translate-y-[.08em] overflow-hidden rounded-full align-baseline shadow-[0_4px_12px_#583a2826]"><Image className="object-cover" src={unsplash("1557804506-669a67965ba0")} alt="" fill sizes="80px" /></span>{" "}
+              digital presence into measurable lasting success
+            </h2></Reveal>
+          </div>
+
+          {/* Each tile reveals on its own as it scrolls in; the delay staggers tiles that share a row on desktop.
+              Photos settle from a slight zoom, and stat cards cascade pill → title → text. */}
+          <div className="mt-12 grid gap-6 sm:grid-cols-2 sm:gap-8 lg:grid-cols-3 lg:gap-10">
+            {introTiles.map((tile, index) => (
+              <Reveal delay={(index % 3) * 120} key={"image" in tile ? tile.image : tile.title}>
+                {"image" in tile ? (
+                  <div className="relative h-[240px] overflow-hidden rounded-[14px] border border-white shadow-[0_8px_24px_#583a2814] transition duration-500 hover:-translate-y-1.5 hover:shadow-[0_18px_40px_#583a2826]">
+                    <Image className="scale-[1.18] object-cover transition-transform duration-[1400ms] ease-[cubic-bezier(.22,1,.36,1)] group-data-[shown]:scale-100 hover:!scale-105 hover:duration-700" src={tile.image} alt={tile.alt} fill sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw" />
+                  </div>
+                ) : (
+                  <div className="flex h-[240px] flex-col items-center justify-center rounded-[14px] bg-paper px-6 text-center transition duration-500 hover:-translate-y-1.5 hover:shadow-[0_18px_40px_#583a2814]">
+                    <span className="inline-flex scale-75 items-center gap-2 rounded-full bg-white px-5 py-2.5 font-heading text-[26px] font-semibold tracking-[-.5px] opacity-0 shadow-[0_10px_26px_#583a2812] transition duration-700 ease-[cubic-bezier(.34,1.56,.64,1)] [transition-delay:200ms] group-data-[shown]:scale-100 group-data-[shown]:opacity-100 motion-reduce:scale-100 motion-reduce:opacity-100"><tile.icon className="size-6 text-coral" aria-hidden="true" /><CountUp value={tile.value} suffix={tile.suffix} /></span>
+                    <h3 className="mt-6 translate-y-3 font-heading text-[21px] font-semibold tracking-[-.4px] opacity-0 transition duration-700 [transition-delay:350ms] group-data-[shown]:translate-y-0 group-data-[shown]:opacity-100 motion-reduce:translate-y-0 motion-reduce:opacity-100">{tile.title}</h3>
+                    <p className={`mt-2 max-w-[270px] translate-y-3 text-[14px] opacity-0 transition duration-700 [transition-delay:500ms] group-data-[shown]:translate-y-0 group-data-[shown]:opacity-100 motion-reduce:translate-y-0 motion-reduce:opacity-100 ${bodyText} !leading-[1.6]`}>{tile.text}</p>
+                  </div>
+                )}
+              </Reveal>
             ))}
           </div>
         </div>
@@ -144,17 +155,27 @@ export default function Home() {
 
       <footer className="bg-[#211d1a] px-[5vw] pt-9 pb-4 text-[#f7f0eb] sm:px-[5.5vw] sm:pt-[49px] sm:pb-[19px]">
         <div className="flex flex-col gap-[33px] pb-8 sm:flex-row sm:justify-between sm:gap-[60px] sm:pb-[47px]">
-          <div>
-            <Wordmark className="text-white" />
-            <p className="mt-[15px] mb-5 text-[13px] leading-[1.7] text-[#b6aaa1] sm:text-sm">Good stories for good people.<br />Social, with a little more feeling.</p>
-            <div className="flex gap-[18px]">{[["https://www.instagram.com/", "Instagram"], ["https://www.linkedin.com/", "LinkedIn"]].map(([href, label]) => <a className="text-[10px] text-[#e9dcd2] hover:text-coral-dark" href={href} target="_blank" rel="noreferrer" key={label}>{label} <span aria-hidden="true">&#8599;</span></a>)}</div>
+          <div className="max-w-[340px]">
+            {/* The logo's navy lettering disappears on the dark footer, so it sits on a white card. */}
+            <a className="inline-block rounded-[14px] bg-white px-4 py-3 shadow-[0_10px_26px_#00000040]" href="#top"><Image src={logo} alt="Digicherry Private Limited" className="h-12 w-auto sm:h-14" /></a>
+            <p className="mt-[15px] mb-5 text-[15px] leading-[1.7] text-[#b6aaa1] sm:text-base">Digital marketing and website development that brings more reach, more leads and lasting growth.</p>
+            <div className="flex flex-wrap gap-2.5">
+              {socials.map(({ href, label, icon: Icon }) => (
+                <a className="grid size-10 place-items-center rounded-full bg-[#ffffff12] text-[#e9dcd2] transition duration-200 hover:-translate-y-0.5 hover:bg-coral hover:text-white" href={href} target="_blank" rel="noreferrer" aria-label={label} key={label}><Icon className="size-[18px]" aria-hidden="true" /></a>
+              ))}
+            </div>
           </div>
-          <div className="flex justify-between gap-6 pt-[5px] sm:justify-start sm:gap-[clamp(55px,10vw,145px)]">
-            <div className="flex flex-col items-start gap-3"><span className="mb-1 text-[9px] font-bold uppercase tracking-[.8px] text-[#9d9088]">Take a look</span>{[["#about", "About"], ["#work", "Our work"], ["#services", "Services"], ["#pricing", "Pricing"]].map(([href, label]) => <a className="text-[10px] leading-[1.7] text-[#e9dcd2] hover:text-coral-dark" href={href} key={href}>{label}</a>)}</div>
-            <div className="flex flex-col items-start gap-3"><span className="mb-1 text-[9px] font-bold uppercase tracking-[.8px] text-[#9d9088]">Say hello</span><a className="text-[10px] leading-[1.7] text-[#e9dcd2] hover:text-coral-dark" href="mailto:hello@digicherry.studio">Email us</a><a className="text-[10px] leading-[1.7] text-[#e9dcd2] hover:text-coral-dark" href="#faq">FAQs</a><span className="text-[10px] leading-[1.7] text-[#e9dcd2]">Brooklyn, NY<br />Working everywhere</span></div>
+          <div className="flex flex-col gap-8 pt-[5px] sm:flex-row sm:gap-[clamp(40px,7vw,110px)]">
+            <div className="flex flex-col items-start gap-3"><span className="mb-1 font-heading text-[19px] font-bold tracking-[-.3px] text-white sm:text-[21px]">Take a look</span>{[["#about", "About"], ["#work", "Our work"], ["#services", "Services"], ["#pricing", "Pricing"]].map(([href, label]) => <a className="text-[13px] sm:text-sm leading-[1.7] text-[#e9dcd2] hover:text-coral-dark" href={href} key={href}>{label}</a>)}</div>
+            <div className="flex max-w-[320px] flex-col items-start gap-3.5">
+              <span className="mb-1 font-heading text-[19px] font-bold tracking-[-.3px] text-white sm:text-[21px]">Say hello</span>
+              <address className="flex gap-2.5 text-[13px] sm:text-sm not-italic leading-[1.7] text-[#e9dcd2]"><PiMapPinFill className="mt-1 size-4 shrink-0 text-coral" aria-hidden="true" /><span>1st floor, Om Sakthi Subhiksha Avenue,<br />No FF-1 FF-2, Behind Lakshmi Petrol bunk,<br />Puducherry - 605001</span></address>
+              <a className="flex items-center gap-2.5 text-[13px] sm:text-sm leading-[1.7] text-[#e9dcd2] hover:text-coral-dark" href="mailto:info@digicherry.in"><PiEnvelopeSimpleFill className="size-4 shrink-0 text-coral" aria-hidden="true" />info@digicherry.in</a>
+              <a className="flex items-center gap-2.5 text-[13px] sm:text-sm leading-[1.7] text-[#e9dcd2] hover:text-coral-dark" href="tel:+919626199993"><PiPhoneFill className="size-4 shrink-0 text-coral" aria-hidden="true" />+91 96261 99993</a>
+            </div>
           </div>
         </div>
-        <div className="flex flex-wrap gap-x-[18px] gap-y-3 border-t border-[#ffffff24] pt-4 text-[8px] text-[#a99d95] sm:flex-nowrap sm:justify-between sm:gap-5 sm:text-[9px]"><span>&copy; 2026 Digicherry Studio</span><span>Made with good intentions <span className="text-coral">&#10084;</span></span><a className="text-[#e9dcd2]" href="#top">Back to top &uarr;</a></div>
+        <div className="flex flex-wrap gap-x-[18px] gap-y-3 border-t border-[#ffffff24] pt-4 text-xs text-[#a99d95] sm:flex-nowrap sm:justify-between sm:gap-5 sm:text-[13px]"><span>&copy; 2026 Digicherry Private Limited</span><span>Made with good intentions <span className="text-coral">&#10084;</span></span><a className="text-[#e9dcd2]" href="#top">Back to top &uarr;</a></div>
       </footer>
     </main>
   );

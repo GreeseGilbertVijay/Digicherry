@@ -26,7 +26,64 @@
 
   --animate-marquee: marquee 110s linear infinite;
   --animate-reels: marquee 70s linear infinite;
-  --animate-logos: marquee-right 60s linear infinite;
+  --animate-logos: marquee-right 180s linear infinite;
+
+  --animate-ping-soft: ping-soft 2s ease-out infinite;
+  --animate-rise: rise 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+  --animate-fade-up: fade-up 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+  --animate-fade-down: fade-down 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+  --animate-draw: draw 0.9s cubic-bezier(0.65, 0, 0.35, 1) both;
+  --animate-breathe: breathe 9s ease-in-out infinite;
+  --animate-float: float 7s ease-in-out infinite;
+
+  @keyframes rise {
+    from {
+      translate: 0 110%;
+    }
+  }
+
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      translate: 0 24px;
+    }
+  }
+
+  @keyframes fade-down {
+    from {
+      opacity: 0;
+      translate: 0 -16px;
+    }
+  }
+
+  @keyframes draw {
+    from {
+      stroke-dashoffset: 1;
+    }
+  }
+
+  @keyframes breathe {
+    50% {
+      scale: 1.08;
+      rotate: 8deg;
+    }
+  }
+
+  @keyframes float {
+    50% {
+      translate: 0 -18px;
+    }
+  }
+
+  @keyframes ping-soft {
+    0% {
+      box-shadow: 0 0 0 0 #f56f5299;
+    }
+    80%,
+    100% {
+      box-shadow: 0 0 0 7px #f56f5200;
+    }
+  }
 
   @keyframes marquee {
     to {
