@@ -26,9 +26,16 @@
 
   --animate-marquee: marquee 110s linear infinite;
   --animate-reels: marquee 70s linear infinite;
+  --animate-logos: marquee-right 60s linear infinite;
 
   @keyframes marquee {
     to {
+      translate: -50% 0;
+    }
+  }
+
+  @keyframes marquee-right {
+    from {
       translate: -50% 0;
     }
   }
