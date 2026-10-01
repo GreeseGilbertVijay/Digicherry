@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import CursorDot from "./cursor-dot";
 import ScrollTop from "./scroll-top";
+import { SiteFooter, SiteHeader } from "./site";
 
 export const metadata: Metadata = {
   title: "Digicherry | Social, with a little more feeling",
@@ -11,7 +12,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en" className="scroll-pt-5 sm:scroll-pt-[88px] motion-safe:scroll-smooth">
-      <body className="m-0 bg-paper font-sans text-ink antialiased selection:bg-[#ffc8b8] selection:text-ink">{children}<ScrollTop /><CursorDot /></body>
+      <body className="m-0 bg-paper font-sans text-ink antialiased selection:bg-[#ffc8b8] selection:text-ink"><SiteHeader />{children}<SiteFooter /><ScrollTop /><CursorDot /></body>
     </html>
   );
 }

@@ -1,24 +1,17 @@
 import Image from "next/image";
-import logo from "../../public/digicherrylogo.png";
-import type { ReactNode } from "react";
-import { FaBehance, FaFacebookF, FaInstagram, FaLinkedinIn, FaYoutube } from "react-icons/fa";
-import { PiCalendarCheckFill, PiEnvelopeSimpleFill, PiMapPinFill, PiPhoneFill, PiSmileyFill, PiTrendUpFill } from "react-icons/pi";
+import Link from "./transition-link";
+import { PiCalendarCheckFill, PiSmileyFill, PiTrendUpFill } from "react-icons/pi";
 import CountUp from "./count-up";
 import Reveal from "./reveal";
+import ServicesSection from "./services-section";
+import { bodyText, button, buttonDark, buttonLight, RollText, sectionWrap } from "./site";
+import PageTransition from "./page-transition";
 
 const logos = Array.from({ length: 29 }, (_, index) => index + 1);
 
 const reels = ["Db-At7SK31S", "DbGA6GaDjpl", "DaraBkiDMOM", "DapyV4Jmr9I", "DafR8tSDl35", "DaZP4muDtlK", "DaX0pjmlVQO"];
 
-const socials = [
-  { href: "https://www.facebook.com/profile.php?id=100083845185459&mibextid=LQQJ4d", label: "Facebook", icon: FaFacebookF },
-  { href: "https://instagram.com/digicherry.in?igshid=YmMyMTA2M2Y=", label: "Instagram", icon: FaInstagram },
-  { href: "https://www.linkedin.com/company/96105773/admin/page-posts/published/", label: "LinkedIn", icon: FaLinkedinIn },
-  { href: "https://www.youtube.com/@DigicherryDC", label: "YouTube", icon: FaYoutube },
-  { href: "https://www.behance.net/gallery/231187221/Portfolio?tracking_source=project_owner_other_projects", label: "Behance", icon: FaBehance },
-];
-
-const unsplash =(id: string) => `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=800&q=80`;
+const unsplash = (id: string) => `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=800&q=80`;
 
 // Photos and stats alternate in a checkerboard: photo, stat, photo / stat, photo, stat.
 const introTiles = [
@@ -29,26 +22,6 @@ const introTiles = [
   { image: unsplash("1557804506-669a67965ba0"), alt: "Strategy meeting around a table" },
   { icon: PiTrendUpFill, value: 10000, suffix: "+", title: "Leads Generated", text: "Qualified leads delivered through campaigns built to convert." },
 ] as const;
-
-const sectionWrap = "mx-auto w-[calc(100%-10vw)] sm:w-[calc(100%-8vw)] md:w-[min(1160px,calc(100%-11vw))]";
-const sectionHeading = "m-0 font-heading text-[43px] font-extrabold leading-[1.03] tracking-[-1.4px] sm:text-[clamp(40px,5vw,63px)] sm:tracking-[-2px] lg:text-[clamp(44px,3.9vw,56px)]";
-const bodyText = "leading-[1.8] text-muted";
-
-const button = "group inline-flex min-h-[43px] items-center justify-center rounded-full px-[15px] text-[11px] font-bold transition duration-200 hover:-translate-y-0.5 sm:min-h-[46px] sm:px-[21px] sm:text-[13px]";
-const hoverOrange = "hover:bg-coral hover:text-white hover:shadow-[0_10px_26px_#f56f5266] hover:brightness-110";
-const buttonCoral = `bg-coral text-white shadow-[0_7px_17px_#dd6d5030] ${hoverOrange}`;
-const buttonLight = `bg-white text-ink ${hoverOrange}`;
-const buttonDark = `bg-ink text-white shadow-[0_8px_20px_#17151326] ${hoverOrange}`;
-
-
-function RollText({ children }: { children: string }) {
-  return (
-    <span className="relative block overflow-hidden leading-[1.3]">
-      <span className="block transition-transform duration-300 ease-out group-hover:-translate-y-full">{children}</span>
-      <span className="absolute inset-0 block translate-y-full transition-transform duration-300 ease-out group-hover:translate-y-0" aria-hidden="true">{children}</span>
-    </span>
-  );
-}
 
 // Each word slides up out of its own clipping box, staggered after `delay` ms.
 function RiseWords({ text, delay = 0 }: { text: string; delay?: number }) {
@@ -62,17 +35,10 @@ function RiseWords({ text, delay = 0 }: { text: string; delay?: number }) {
   ));
 }
 
+
 export default function Home() {
   return (
-    <main>
-      <header className="relative z-[2] bg-paper" id="top"><div className={`${sectionWrap} flex h-[70px] items-center justify-between gap-3 sm:h-[82px] sm:gap-7`}>
-        <a className="shrink-0" href="#top"><Image src={logo} alt="Digicherry Private Limited" className="h-11 w-auto sm:h-14" loading="eager" fetchPriority="high" /></a>
-        <nav className="m-auto hidden items-center gap-[clamp(22px,3vw,46px)] sm:flex" aria-label="Main navigation">
-          {[["#about", "About"], ["#work", "Our work"], ["#services", "Services"], ["#pricing", "Pricing"]].map(([href, label]) => <a className="text-[13px] font-semibold hover:text-coral-dark" href={href} key={href}>{label}</a>)}
-        </nav>
-        <a data-cursor="button" className={`${button} ${buttonCoral} max-sm:min-h-10`} href="#contact"><RollText>Let&apos;s talk</RollText></a>
-      </div></header>
-
+    <PageTransition><main>
       <section className="relative overflow-hidden bg-[#fbf1eb] pt-[55px] sm:min-h-[640px] sm:pt-16 lg:min-h-0 lg:pt-12" aria-labelledby="hero-title">
         <div className="pointer-events-none absolute -top-[250px] -right-[142px] size-[440px] animate-breathe rounded-full border border-[#efc9ba80] shadow-[0_0_0_44px_#efc9ba16,0_0_0_89px_#efc9ba10] motion-reduce:animate-none" aria-hidden="true" />
         <div className="pointer-events-none absolute top-[38%] -left-[90px] size-[180px] animate-float rounded-full bg-coral/10 blur-2xl motion-reduce:animate-none" aria-hidden="true" />
@@ -90,7 +56,7 @@ export default function Home() {
             </em>
           </h1>
           <p className="mx-auto mt-[18px] max-w-[370px] animate-fade-up text-sm leading-[1.65] text-[#746b65] [animation-delay:800ms] motion-reduce:animate-none sm:mt-[32px] sm:max-w-[490px] sm:text-base lg:max-w-[800px]">We specialize in digital marketing and website development, helping businesses boost website traffic, enhance online visibility, and achieve sustainable growth through effective strategies and innovative solutions tailored to your needs.</p>
-          <div className="mt-[21px] flex animate-fade-up justify-center gap-2 [animation-delay:1s] motion-reduce:animate-none sm:mt-[27px] sm:gap-3 lg:mt-6"><a data-cursor="button" className={`${button} ${buttonLight}`} href="#work"><RollText>See what we do</RollText></a><a data-cursor="button" className={`${button} ${buttonDark}`} href="#services"><RollText>Explore services</RollText></a></div>
+          <div className="mt-[21px] flex animate-fade-up justify-center gap-2 [animation-delay:1s] motion-reduce:animate-none sm:mt-[27px] sm:gap-3 lg:mt-6"><a data-cursor="button" className={`${button} ${buttonLight}`} href="#about"><RollText>See what we do</RollText></a><Link data-cursor="button" className={`${button} ${buttonDark}`} href="/services"><RollText>Explore services</RollText></Link></div>
         </div>
         </div>
       </section>
@@ -153,30 +119,7 @@ export default function Home() {
         </div>
       </section>
 
-      <footer className="bg-[#211d1a] px-[5vw] pt-9 pb-4 text-[#f7f0eb] sm:px-[5.5vw] sm:pt-[49px] sm:pb-[19px]">
-        <div className="flex flex-col gap-[33px] pb-8 sm:flex-row sm:justify-between sm:gap-[60px] sm:pb-[47px]">
-          <div className="max-w-[340px]">
-            {/* The logo's navy lettering disappears on the dark footer, so it sits on a white card. */}
-            <a className="inline-block rounded-[14px] bg-white px-4 py-3 shadow-[0_10px_26px_#00000040]" href="#top"><Image src={logo} alt="Digicherry Private Limited" className="h-12 w-auto sm:h-14" /></a>
-            <p className="mt-[15px] mb-5 text-[15px] leading-[1.7] text-[#b6aaa1] sm:text-base">Digital marketing and website development that brings more reach, more leads and lasting growth.</p>
-            <div className="flex flex-wrap gap-2.5">
-              {socials.map(({ href, label, icon: Icon }) => (
-                <a className="grid size-10 place-items-center rounded-full bg-[#ffffff12] text-[#e9dcd2] transition duration-200 hover:-translate-y-0.5 hover:bg-coral hover:text-white" href={href} target="_blank" rel="noreferrer" aria-label={label} key={label}><Icon className="size-[18px]" aria-hidden="true" /></a>
-              ))}
-            </div>
-          </div>
-          <div className="flex flex-col gap-8 pt-[5px] sm:flex-row sm:gap-[clamp(40px,7vw,110px)]">
-            <div className="flex flex-col items-start gap-3"><span className="mb-1 font-heading text-[19px] font-bold tracking-[-.3px] text-white sm:text-[21px]">Take a look</span>{[["#about", "About"], ["#work", "Our work"], ["#services", "Services"], ["#pricing", "Pricing"]].map(([href, label]) => <a className="text-[13px] sm:text-sm leading-[1.7] text-[#e9dcd2] hover:text-coral-dark" href={href} key={href}>{label}</a>)}</div>
-            <div className="flex max-w-[320px] flex-col items-start gap-3.5">
-              <span className="mb-1 font-heading text-[19px] font-bold tracking-[-.3px] text-white sm:text-[21px]">Say hello</span>
-              <address className="flex gap-2.5 text-[13px] sm:text-sm not-italic leading-[1.7] text-[#e9dcd2]"><PiMapPinFill className="mt-1 size-4 shrink-0 text-coral" aria-hidden="true" /><span>1st floor, Om Sakthi Subhiksha Avenue,<br />No FF-1 FF-2, Behind Lakshmi Petrol bunk,<br />Puducherry - 605001</span></address>
-              <a className="flex items-center gap-2.5 text-[13px] sm:text-sm leading-[1.7] text-[#e9dcd2] hover:text-coral-dark" href="mailto:info@digicherry.in"><PiEnvelopeSimpleFill className="size-4 shrink-0 text-coral" aria-hidden="true" />info@digicherry.in</a>
-              <a className="flex items-center gap-2.5 text-[13px] sm:text-sm leading-[1.7] text-[#e9dcd2] hover:text-coral-dark" href="tel:+919626199993"><PiPhoneFill className="size-4 shrink-0 text-coral" aria-hidden="true" />+91 96261 99993</a>
-            </div>
-          </div>
-        </div>
-        <div className="flex flex-wrap gap-x-[18px] gap-y-3 border-t border-[#ffffff24] pt-4 text-xs text-[#a99d95] sm:flex-nowrap sm:justify-between sm:gap-5 sm:text-[13px]"><span>&copy; 2026 Digicherry Private Limited</span><span>Made with good intentions <span className="text-coral">&#10084;</span></span><a className="text-[#e9dcd2]" href="#top">Back to top &uarr;</a></div>
-      </footer>
-    </main>
+      <ServicesSection viewAll />
+    </main></PageTransition>
   );
 }
