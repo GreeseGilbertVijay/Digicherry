@@ -1,1 +1,34 @@
+@import "@fontsource/open-sauce-one/400.css";
+@import "@fontsource/open-sauce-one/500.css";
+@import "@fontsource/open-sauce-one/600.css";
+@import "@fontsource/open-sauce-one/700.css";
+@import "@fontsource/open-sauce-one/800.css";
+@import "@fontsource/open-sauce-two/400.css";
+@import "@fontsource/open-sauce-two/500.css";
+@import "@fontsource/open-sauce-two/600.css";
+@import "@fontsource/open-sauce-two/700.css";
+@import "@fontsource/open-sauce-two/800.css";
 @import "tailwindcss";
+
+@theme {
+
+  --color-ink: #171513;
+  --color-muted: #77716c;
+  --color-paper: #fffaf5;
+  --color-cream: #f8f0e9;
+  --color-line: #e9ded5;
+  --color-coral: #f56f52;
+  --color-coral-dark: #db543a;
+
+  --font-heading: "Open Sauce One", "Avenir Next", sans-serif;
+  --font-sans: "Open Sauce Two", "Avenir Next", sans-serif;
+  --font-serif: Georgia, "Times New Roman", serif;
+
+  --animate-marquee: marquee 110s linear infinite;
+
+  @keyframes marquee {
+    to {
+      translate: -50% 0;
+    }
+  }
+}
