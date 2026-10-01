@@ -25,6 +25,7 @@
   --font-serif: Georgia, "Times New Roman", serif;
 
   --animate-marquee: marquee 110s linear infinite;
+  --animate-reels: marquee 70s linear infinite;
 
   @keyframes marquee {
     to {

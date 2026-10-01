@@ -32,6 +32,8 @@ const people = [
   ["Eli Brooks", "Paid Media Lead", "photo-1506794778202-cad84cf45f1d"],
 ];
 
+const reels = ["Db-At7SK31S", "DbGA6GaDjpl", "DaraBkiDMOM", "DapyV4Jmr9I", "DafR8tSDl35", "DaZP4muDtlK", "DaX0pjmlVQO"];
+
 const sectionWrap = "mx-auto w-[calc(100%-10vw)] sm:w-[calc(100%-8vw)] md:w-[min(1160px,calc(100%-11vw))]";
 const tintedSection = "bg-[#f7efe9] pt-16 pb-[68px] sm:pt-[86px] sm:pb-[95px] lg:py-16";
 const sectionHeading = "m-0 font-heading text-[43px] font-extrabold leading-[1.03] tracking-[-1.4px] sm:text-[clamp(40px,5vw,63px)] sm:tracking-[-2px] lg:text-[clamp(44px,3.9vw,56px)]";
@@ -122,6 +124,17 @@ export default function Home() {
             </article>
           ))}
         </div>
+        </div>
+      </section>
+
+      {/* The track holds the reels twice so the marquee can loop seamlessly; hovering pauses it so a reel can be played. */}
+      <section className="overflow-hidden bg-[#fbf1eb] py-10 sm:py-14 motion-reduce:overflow-x-auto" aria-label="Instagram reels">
+        <div className="flex w-max animate-reels hover:[animation-play-state:paused] motion-reduce:animate-none">
+          {[...reels, ...reels].map((id, index) => (
+            <div className="mr-5 h-[540px] w-[326px] shrink-0 overflow-hidden rounded-[18px] border-4 border-white bg-white shadow-[0_12px_30px_#583a2814] sm:mr-7 sm:h-[580px]" key={`${id}-${index}`} aria-hidden={index >= reels.length || undefined}>
+              <iframe className="block size-full border-0" src={`https://www.instagram.com/reel/${id}/embed`} title={`Instagram reel ${id}`} loading="lazy" scrolling="no" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" allowFullScreen tabIndex={index >= reels.length ? -1 : undefined} />
+            </div>
+          ))}
         </div>
       </section>
 
