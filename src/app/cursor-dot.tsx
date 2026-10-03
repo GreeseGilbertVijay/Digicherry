@@ -13,9 +13,16 @@ function modeFor(target: EventTarget | null): Mode {
   return hasText ? "text" : "default";
 }
 
+// Diameter of the text cursor: a little taller than the glyphs so it covers a full line.
+function textSizeFor(target: EventTarget | null) {
+  if (!(target instanceof Element)) return 0;
+  return parseFloat(getComputedStyle(target).fontSize) * 1.3;
+}
+
 const modeClasses: Record<Mode, string> = {
   default: "size-3 bg-ink",
-  text: "size-3 bg-white shadow-[0_1px_4px_#17151340]",
+  // Sized inline to the hovered text, and paired with mix-blend-difference on the wrapper so that text shows inverted.
+  text: "bg-white",
   button: "size-14 border border-white/40 bg-ink/60 backdrop-blur-[2px]",
   play: "size-24 border border-white/40 bg-ink/60 backdrop-blur-[2px]",
   pause: "size-24 border border-white/40 bg-ink/60 backdrop-blur-[2px]",
@@ -25,6 +32,7 @@ export default function CursorDot() {
   const dot = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
   const [mode, setMode] = useState<Mode>("default");
+  const [textSize, setTextSize] = useState(0);
 
   useEffect(() => {
     if (!window.matchMedia("(pointer: fine)").matches) return;
@@ -65,6 +73,7 @@ export default function CursorDot() {
       shown = true;
       setVisible(true);
       setMode(modeFor(event.target));
+      setTextSize(textSizeFor(event.target));
     };
     // The pointer can't be tracked inside an iframe, so over a reel the dot glides onto Instagram's play button
     // and becomes our play icon there; clicks still pass straight through to the embed.
@@ -89,7 +98,10 @@ export default function CursorDot() {
     };
     // A click can flip what's under the cursor (play -> pause) without the pointer moving.
     const onClick = () => requestAnimationFrame(() => {
-      if (shown) setMode(modeFor(document.elementFromPoint(target.x, target.y)));
+      if (!shown) return;
+      const el = document.elementFromPoint(target.x, target.y);
+      setMode(modeFor(el));
+      setTextSize(textSizeFor(el));
     });
     // Clicking into an iframe moves focus to it, which is the only sign this page gets that a reel was started.
     const onBlur = () => setTimeout(() => {
@@ -120,8 +132,8 @@ export default function CursorDot() {
   }, []);
 
   return (
-    <div ref={dot} className="pointer-events-none fixed top-0 left-0 z-[9999]" aria-hidden="true">
-      <div className={`grid -translate-x-1/2 -translate-y-1/2 place-items-center overflow-hidden rounded-full transition-[width,height,background-color,border-color,opacity] duration-300 ease-out ${visible ? "opacity-100" : "opacity-0"} ${modeClasses[mode]}`}>
+    <div ref={dot} className={`pointer-events-none fixed top-0 left-0 z-[9999] ${mode === "text" ? "mix-blend-difference" : ""}`} aria-hidden="true">
+      <div className={`grid -translate-x-1/2 -translate-y-1/2 place-items-center overflow-hidden rounded-full transition-[width,height,background-color,border-color,opacity] duration-300 ease-out ${visible ? "opacity-100" : "opacity-0"} ${modeClasses[mode]}`} style={mode === "text" ? { width: textSize, height: textSize } : undefined}>
         <PiArrowUpRightBold className={`col-start-1 row-start-1 size-5 text-white transition duration-200 ${mode === "button" ? "scale-100 opacity-100" : "scale-50 opacity-0"}`} />
         <PiPlayFill className={`col-start-1 row-start-1 ml-1 size-9 text-white transition duration-300 ease-out ${mode === "play" ? "scale-100 opacity-100" : "scale-50 opacity-0"}`} />
         <PiPauseFill className={`col-start-1 row-start-1 size-9 text-white transition duration-200 ${mode === "pause" ? "scale-100 opacity-100" : "scale-50 opacity-0"}`} />
