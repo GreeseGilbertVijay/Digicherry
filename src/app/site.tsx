@@ -27,6 +27,13 @@ export const contact = {
   address: ["1st floor, Om Sakthi Subhiksha Avenue,", "No FF-1 FF-2, Behind Lakshmi Petrol bunk,", "Puducherry - 605001"],
 };
 
+export const offices = [
+  { city: "Puducherry", country: "India", flag: "🇮🇳", label: "Head Office", address: contact.address },
+  { city: "Chennai", country: "India", flag: "🇮🇳", address: ["Global Infocity, B-Block, 2nd Floor,", "#40, MGR Salai, Kandanchavadi, Perungudi,", "Chennai, Tamil Nadu - 600096"] },
+  { city: "Mumbai", country: "India", flag: "🇮🇳", address: ["Office No. 810, 8th Floor,", "Lotus Arc One, Andheri West,", "Mumbai - 400053"] },
+  { city: "Le Blanc-Mesnil", country: "France", flag: "🇫🇷", address: ["21 Av. de Monaco,", "93150 Le Blanc-Mesnil,", "France"] },
+];
+
 export const socials = [
   { href: "https://www.facebook.com/profile.php?id=100083845185459&mibextid=LQQJ4d", label: "Facebook", icon: FaFacebookF },
   { href: "https://instagram.com/digicherry.in?igshid=YmMyMTA2M2Y=", label: "Instagram", icon: FaInstagram },

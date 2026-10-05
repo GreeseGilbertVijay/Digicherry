@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import { PiEnvelopeSimpleFill, PiMapPinFill, PiPhoneFill } from "react-icons/pi";
 import Reveal from "../reveal";
-import { contact, sectionWrap, socials } from "../site";
+import { contact, offices, sectionWrap, socials } from "../site";
 import ContactForm from "./contact-form";
+import OfficeLocations from "./office-locations";
 import PageTransition from "../page-transition";
 
 export const metadata: Metadata = {
@@ -10,12 +11,10 @@ export const metadata: Metadata = {
   description: "Talk to Digicherry about digital marketing, SEO, social media and website development in Puducherry.",
 };
 
-const mapQuery = encodeURIComponent(`Digicherry, ${contact.address.join(" ")}`);
-
 const channels = [
   { icon: PiPhoneFill, title: "Call us", value: contact.phone, href: contact.phoneHref },
   { icon: PiEnvelopeSimpleFill, title: "Email us", value: contact.email, href: `mailto:${contact.email}` },
-  { icon: PiMapPinFill, title: "Visit us", value: contact.address.join(" "), href: `https://www.google.com/maps/search/?api=1&query=${mapQuery}` },
+  { icon: PiMapPinFill, title: "Visit us", value: offices.map((office) => office.city).join(" · "), href: "#offices" },
 ];
 
 
@@ -69,13 +68,7 @@ export default function ContactPage() {
         </div>
       </section>
 
-      <section className="pb-16 sm:pb-24" aria-label="Map">
-        <Reveal className={sectionWrap}>
-          <div className="overflow-hidden rounded-[28px] border-4 border-white shadow-[0_18px_44px_#583a2818]">
-            <iframe className="block h-[360px] w-full border-0 grayscale-[.3] sm:h-[440px]" src={`https://www.google.com/maps?q=${mapQuery}&output=embed`} title="Digicherry office on Google Maps" loading="lazy" referrerPolicy="no-referrer-when-downgrade" />
-          </div>
-        </Reveal>
-      </section>
+      <OfficeLocations />
     </main></PageTransition>
   );
 }

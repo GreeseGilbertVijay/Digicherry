@@ -40,7 +40,7 @@ function RiseWords({ text, delay = 0 }: { text: string; delay?: number }) {
 export default function Home() {
   return (
     <PageTransition><main>
-      <section className="relative overflow-hidden bg-[#fbf1eb] pt-[55px] sm:min-h-[640px] sm:pt-16 lg:min-h-0 lg:pt-12" aria-labelledby="hero-title">
+      <section className="relative overflow-hidden flex min-h-[70vh] flex-col justify-center bg-[#fbf1eb] py-[55px] sm:py-16 lg:py-12" aria-labelledby="hero-title">
         <div className="pointer-events-none absolute -top-[250px] -right-[142px] size-[440px] animate-breathe rounded-full border border-[#efc9ba80] shadow-[0_0_0_44px_#efc9ba16,0_0_0_89px_#efc9ba10] motion-reduce:animate-none" aria-hidden="true" />
         <div className="pointer-events-none absolute top-[38%] -left-[90px] size-[180px] animate-float rounded-full bg-coral/10 blur-2xl motion-reduce:animate-none" aria-hidden="true" />
         <div className={`${sectionWrap} relative`}>
