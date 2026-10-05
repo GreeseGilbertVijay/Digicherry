@@ -36,6 +36,13 @@
   --animate-breathe: breathe 9s ease-in-out infinite;
   --animate-float: float 7s ease-in-out infinite;
   --animate-page-scroll: page-scroll 16s ease-in-out infinite;
+  --animate-progress: progress 6s linear both;
+
+  @keyframes progress {
+    from {
+      scale: 0 1;
+    }
+  }
 
   @keyframes rise {
     from {

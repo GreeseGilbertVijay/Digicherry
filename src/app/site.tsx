@@ -4,6 +4,7 @@ import { FaBehance, FaFacebookF, FaInstagram, FaLinkedinIn, FaYoutube } from "re
 import { PiEnvelopeSimpleFill, PiMapPinFill, PiPhoneFill } from "react-icons/pi";
 import logo from "../../public/digicherrylogo.png";
 import { services } from "./services-data";
+import HeaderBar from "./site-header";
 
 // Shared by every page: layout widths, button styles, contact details and the header/footer.
 
@@ -17,7 +18,7 @@ export const buttonCoral = `bg-coral text-white shadow-[0_7px_17px_#dd6d5030] ${
 export const buttonLight = `bg-white text-ink ${hoverOrange}`;
 export const buttonDark = `bg-ink text-white shadow-[0_8px_20px_#17151326] ${hoverOrange}`;
 
-export const navLinks = [["/#about", "About"], ["/services", "Services"], ["/projects", "Projects"], ["/contact", "Contact"]] as const;
+export const navLinks = [["/", "Home"], ["/#about", "About"], ["/services", "Services"], ["/projects", "Projects"], ["/contact", "Contact"]] as const;
 
 export const contact = {
   email: "info@digicherry.in",
@@ -45,13 +46,26 @@ export function RollText({ children }: { children: string }) {
 
 export function SiteHeader() {
   return (
-    <header className="relative z-[2] bg-paper [view-transition-name:site-header]" id="top"><div className={`${sectionWrap} flex h-[70px] items-center justify-between gap-3 sm:h-[82px] sm:gap-7`}>
-      <Link className="shrink-0" href="/"><Image src={logo} alt="Digicherry Private Limited" className="h-11 w-auto sm:h-14" loading="eager" fetchPriority="high" /></Link>
-      <nav className="m-auto hidden items-center gap-[clamp(22px,3vw,46px)] sm:flex" aria-label="Main navigation">
-        {navLinks.map(([href, label]) => <Link className="text-[13px] font-semibold hover:text-coral-dark" href={href} key={href}>{label}</Link>)}
-      </nav>
-      <Link data-cursor="button" className={`${button} ${buttonCoral} max-sm:min-h-10`} href="/contact"><RollText>Let&apos;s talk</RollText></Link>
-    </div></header>
+    <>
+      {/* The sticky header is always on screen, so "Back to top" links aim at this marker instead. */}
+      <span className="absolute top-0" id="top" aria-hidden="true" />
+      <HeaderBar
+        links={navLinks}
+        logo={<Link href="/"><Image src={logo} alt="Digicherry Private Limited" className="h-11 w-auto sm:h-14" loading="eager" fetchPriority="high" /></Link>}
+        cta={<Link data-cursor="button" className={`${button} ${buttonCoral} max-sm:min-h-10`} href="/contact"><RollText>Let&apos;s talk</RollText></Link>}
+        menuFooter={
+          <div className="flex flex-col gap-3 text-[14px] text-muted">
+            <a className="flex items-center gap-3" href={`mailto:${contact.email}`}><PiEnvelopeSimpleFill className="size-4 text-coral" aria-hidden="true" />{contact.email}</a>
+            <a className="flex items-center gap-3" href={contact.phoneHref}><PiPhoneFill className="size-4 text-coral" aria-hidden="true" />{contact.phone}</a>
+            <div className="mt-2 flex gap-2">
+              {socials.map(({ href, label, icon: Icon }) => (
+                <a className="grid size-10 place-items-center rounded-full border border-line bg-white text-ink transition hover:border-coral hover:bg-coral hover:text-white" href={href} target="_blank" rel="noreferrer" aria-label={label} key={label}><Icon className="size-4" aria-hidden="true" /></a>
+              ))}
+            </div>
+          </div>
+        }
+      />
+    </>
   );
 }
 

@@ -4,7 +4,8 @@ import { PiCalendarCheckFill, PiSmileyFill, PiTrendUpFill } from "react-icons/pi
 import CountUp from "./count-up";
 import Reveal from "./reveal";
 import ServicesSection from "./services-section";
-import { bodyText, button, buttonDark, buttonLight, RollText, sectionWrap } from "./site";
+import Testimonials from "./testimonials";
+import { bodyText, button, buttonDark, buttonLight, RollText, sectionHeading, sectionWrap } from "./site";
 import PageTransition from "./page-transition";
 
 const logos = Array.from({ length: 29 }, (_, index) => index + 1);
@@ -120,6 +121,21 @@ export default function Home() {
       </section>
 
       <ServicesSection viewAll />
+
+      <section className="relative overflow-hidden bg-[#fbf1eb] py-16 sm:py-24" aria-labelledby="testimonials-title">
+        <div className="pointer-events-none absolute -top-[220px] -right-[160px] size-[440px] animate-breathe rounded-full border border-[#efc9ba80] shadow-[0_0_0_44px_#efc9ba16,0_0_0_89px_#efc9ba10] motion-reduce:animate-none" aria-hidden="true" />
+        <div className="pointer-events-none absolute bottom-10 left-[30%] size-[260px] animate-float rounded-full bg-coral/10 blur-3xl motion-reduce:animate-none" aria-hidden="true" />
+        <div className={`${sectionWrap} relative`}>
+          <div className="mb-12 flex flex-col gap-6 lg:mb-16 lg:flex-row lg:items-end lg:justify-between">
+            <div className="max-w-[640px]">
+              <Reveal><span className="inline-flex items-center gap-2 text-[12px] font-bold uppercase tracking-[.4px]"><span className="size-2 animate-ping-soft rounded-full bg-coral" aria-hidden="true" />Testimonials</span></Reveal>
+              <Reveal delay={120}><h2 className={`${sectionHeading} mt-4`} id="testimonials-title">Kind words from brands we <span className="text-coral">help grow</span></h2></Reveal>
+            </div>
+            <Reveal delay={240} className="max-w-[420px]"><p className={`m-0 text-[15px] ${bodyText}`}>Restaurants, clinics, schools and startups across Pondicherry trust us with their growth. Here&apos;s what a few of them have to say.</p></Reveal>
+          </div>
+          <Reveal delay={150}><Testimonials /></Reveal>
+        </div>
+      </section>
     </main></PageTransition>
   );
 }
