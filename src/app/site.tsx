@@ -18,7 +18,7 @@ export const buttonCoral = `bg-coral text-white shadow-[0_7px_17px_#dd6d5030] ${
 export const buttonLight = `bg-white text-ink ${hoverOrange}`;
 export const buttonDark = `bg-ink text-white shadow-[0_8px_20px_#17151326] ${hoverOrange}`;
 
-export const navLinks = [["/", "Home"], ["/#about", "About"], ["/services", "Services"], ["/projects", "Projects"], ["/contact", "Contact"]] as const;
+export const navLinks = [["/", "Home"], ["/about", "About"], ["/services", "Services"], ["/projects", "Projects"], ["/contact", "Contact"]] as const;
 
 export const contact = {
   email: "info@digicherry.in",

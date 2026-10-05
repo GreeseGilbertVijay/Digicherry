@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 };
 
 const detours = [
-  { href: "/#about", icon: PiUsersThreeFill, title: "About us", text: "Who we are and how we work." },
+  { href: "/about", icon: PiUsersThreeFill, title: "About us", text: "Who we are and how we work." },
   { href: "/services", icon: PiSparkleFill, title: "Services", text: "Marketing, SEO, websites and more." },
   { href: "/projects", icon: PiBriefcaseFill, title: "Projects", text: "Brands we have helped grow." },
   { href: "/contact", icon: PiChatsCircleFill, title: "Contact", text: "Tell us what you were after." },

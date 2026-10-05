@@ -20,7 +20,7 @@ export default function HeaderBar({ links, logo, cta, menuFooter }: { links: rea
   const [hovered, setHovered] = useState<string | null>(null);
   const [indicator, setIndicator] = useState<Indicator>({ left: 0, width: 0, shown: false });
 
-  // Only exact paths count as current, so "/#about" never steals the highlight from Home.
+  // Only exact paths count as current, so a hash link like "/#reels" never steals the highlight from Home.
   const active = links.find(([href]) => href === pathname)?.[0] ?? null;
   // The link the pill sits under: dark on the current page, white while previewing another link.
   const target = hovered ?? active;
